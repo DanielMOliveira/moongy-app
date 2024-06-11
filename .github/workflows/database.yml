@@ -40,7 +40,7 @@ jobs:
           PGUSER: ${{ secrets.AWS_RDS_USER }}
           PGPASSWORD: ${{ secrets.AWS_RDS_PASSWORD }}          
         run: |
-          psql -d ${{ secrets.AWS_RDS_DB }} -f teste.sql
+          psql -d ${{ secrets.AWS_RDS_DB }} -f contact.sql
 
       - name: return data from table
         env:

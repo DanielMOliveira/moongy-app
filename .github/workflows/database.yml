@@ -9,6 +9,7 @@ on:
 jobs:
   db_operations:
     runs-on: ubuntu-latest
+    environment: development
 
     steps:
       - name: Checkout code

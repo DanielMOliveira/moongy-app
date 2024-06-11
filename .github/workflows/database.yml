@@ -1,0 +1,28 @@
+name: Database Operations
+
+on:
+  push:
+    branches:
+      - main
+  
+
+jobs:
+  db_operations:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install PostgreSQL client
+        run: sudo apt-get update && sudo apt-get install -y postgresql-client
+
+      - name: Run SQL script from file
+        env:
+          PGHOST: ${{ secrets.AWS_RDS_HOST }}
+          PGPORT: ${{ secrets.AWS_RDS_PORT }}
+          PGUSER: ${{ secrets.AWS_RDS_USER }}
+          PGPASSWORD: ${{ secrets.AWS_RDS_PASSWORD }}
+          PGDATABASE: ${{ secrets.AWS_RDS_DB }}
+        run: |
+          psql -f contact.sql
